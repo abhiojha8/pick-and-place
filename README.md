@@ -1,7 +1,8 @@
-[![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
 # Robotic arm - Pick & Place project
 
-Make sure you are using robo-nd VM or have Ubuntu+ROS installed locally.
+## Setup
+
+Make sure you are using Ubuntu+ROS installed locally.
 
 ### One time Gazebo setup step:
 Check the version of gazebo installed on your system using a terminal:
@@ -49,7 +50,7 @@ $ sudo chmod +x safe_spawner.sh
 Build the project:
 ```sh
 $ cd ~/catkin_ws
-$ catkin_make
+$ catkin build
 ```
 
 Add following to your .bashrc file
@@ -83,7 +84,7 @@ Once Gazebo and rviz are up and running, make sure you see following in the gaze
 	- Blue cylindrical target in one of the shelves
 	
 	- Dropbox right next to the robot
-	
+
 
 If any of these items are missing, report as an issue.
 
@@ -98,4 +99,34 @@ The demo ends when the robot arm reaches at the top of the drop location.
 There is no loopback implemented yet, so you need to close all the terminal windows in order to restart.
 
 In case the demo fails, close all three terminal windows and rerun the script.
+
+## DH parameter table for the KUKA arm
+
+| Links | alpha(i-1) | a(i-1) | d(i-1) | theta(i)   |
+| ----- | ---------- | ------ | ------ | ---------- |
+| 0->1  | 0          | 0      | 0.75   | q1         |
+| 1->2  | - pi/2     | 0.35   | 0      | -pi/2 + q2 |
+| 2->3  | 0          | 1.25   | 0      | q3         |
+| 3->4  | -pi/2      | -0.054 | 1.5    | q4         |
+| 4->5  | pi/2       | 0      | 0      | q5         |
+| 5->6  | -pi/2      | 0      | 0      | q6         |
+| 6->EE | 0          | 0      | 0.303  | 0          |
+
+## Implementation
+
+For implementation of forward and inverse kinematics please check [IK_server.py](https://github.com/abhiojha8/pick-and-place/blob/master/kuka_arm/scripts/IK_server.py).
+
+## Results
+
+Here are some resultant pics while KUKA arm was performing the pick and place operation.
+
+![](https://github.com/abhiojha8/pick-and-place/blob/master/result/1.png)
+
+![](https://github.com/abhiojha8/pick-and-place/blob/master/result/2.png)
+
+![](https://github.com/abhiojha8/pick-and-place/blob/master/result/3.png)
+
+![](https://github.com/abhiojha8/pick-and-place/blob/master/result/4.png)
+
+![](https://github.com/abhiojha8/pick-and-place/blob/master/result/5.png)
 
